@@ -1,0 +1,26 @@
+services:
+  bot:
+    build: .
+    restart: unless-stopped
+    env_file: .env              # TELEGRAM_BOT_TOKEN=...  (never commit)
+    volumes:
+      - ./data:/app/data
+    # depends_on: [local-bot-api]   # uncomment if using the local server
+
+  # Optional: Local Bot API Server (files up to 2000 MB).
+  # Verify the image upstream, or build from https://github.com/tdlib/telegram-bot-api
+  local-bot-api:
+    profiles: ["local-api"]
+    image: aiogram/telegram-bot-api:latest
+    restart: unless-stopped
+    environment:
+      TELEGRAM_API_ID: ${TG_API_ID}
+      TELEGRAM_API_HASH: ${TG_API_HASH}
+      TELEGRAM_LOCAL: "1"
+    volumes:
+      - tg-api-data:/var/lib/telegram-bot-api
+    ports:
+      - "127.0.0.1:8081:8081"
+
+volumes:
+  tg-api-data:

@@ -1,0 +1,21 @@
+[Unit]
+Description=Telegram bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=tgbot
+WorkingDirectory=/opt/tgbot
+EnvironmentFile=/etc/tgbot/bot.env
+ExecStart=/opt/tgbot/venv/bin/python /opt/tgbot/bot.py
+Restart=always
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/tgbot/data
+
+[Install]
+WantedBy=multi-user.target

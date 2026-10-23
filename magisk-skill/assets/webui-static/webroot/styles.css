@@ -1,0 +1,38 @@
+/* Offline-safe defaults; MMRL host variables override these when available. */
+:root {
+  color-scheme: light dark;
+  font-family: system-ui, sans-serif;
+  background: var(--background, #121212);
+  color: var(--onBackground, #f4f4f4);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 0;
+  margin: 0;
+  background: var(--background, #121212);
+  color: var(--onBackground, #f4f4f4);
+}
+
+.page {
+  padding: 16px;
+}
+
+.card {
+  padding: 16px;
+  border-radius: 20px;
+  background: var(--surfaceContainer, #242424);
+  color: var(--onSurface, #f4f4f4);
+}
+
+/* Apply safe-area variables only to fixed/absolute elements at screen edges. */
+.top-bar {
+  position: fixed;
+  inset: 0 0 auto;
+  padding-top: var(--window-inset-top, 0px);
+  background: var(--surface, #242424);
+  color: var(--onSurface, #f4f4f4);
+}

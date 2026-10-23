@@ -1,0 +1,8 @@
+{
+  "title": "Example WebUI",
+  "historyFallback": false,
+  "windowResize": true,
+  "backHandler": true,
+  "exitConfirm": true,
+  "autoStatusBarsStyle": true
+}
